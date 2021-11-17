@@ -5,6 +5,7 @@ function GetWeather(props) {
 	const [loading, setLoading] = useState(null);
 	const [error, setError] = useState(null);
 
+
 	const fetchWeather = async (query) => {
 		setLoading(true);
 		console.log(query);
