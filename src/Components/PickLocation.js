@@ -2,11 +2,12 @@ import { useRef, useState } from "react";
 
 function PickLocation(props) {
 	const locationInput = useRef("");
-    const handleSubmit = () => {
+	const handleSubmit = (event) => {
+		event.preventDefault();
 		const location = locationInput.current.value;
-        if (location.length > 0) {
-            props.onSearch(location)
-        }
+		if (location.length > 0) {
+			props.onSearch(location);
+		}
 	};
 
 	return (
