@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DisplayWeather from "./DisplayWeather";
 import PickLocation from "./PickLocation";
+import classes from "./ShowWeather.module.css";
 
 function ShowWeather() {
 	const [location, setLocation] = useState({});
@@ -9,7 +10,7 @@ function ShowWeather() {
 	};
 
 	return (
-		<div>
+		<div className={classes.card}>
 			<PickLocation onSearch={handleSearch} />
 			{location && <DisplayWeather get={location} />}
 		</div>
