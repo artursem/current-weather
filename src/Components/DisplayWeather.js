@@ -5,14 +5,29 @@ function DisplayWeather(props) {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 
-	const fetchWeather = useCallback(async (query) => {
+	const getWeatherByCity = async (query, appid) => {
+		return fetch(
+			`http://api.openweathermap.org/data/2.5/weather?q=${query.city}&appid=${appid}`
+		);
+	};
+
+	const getWeatherByGeolocation = async (query, appid) => {
+		return fetch(
+			`http://api.openweathermap.org/data/2.5/weather?lat=${query.lat}&lon=${query.lon}&appid=${appid}`
+		)
+	};
+
+	const fetchWeather = useCallback(async (query, method) => {
 		setError(false)
 		setLoading(true);
 		const appid = "599f9ab00f5ffd6eeb1a6bf54606a714";
 		try {
-			const response = await fetch(
-				`http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${appid}`
-			);
+			let response;
+			if (query.method === 'city') {
+				response = await getWeatherByCity(query, appid);
+			} else if (query.method === 'geo') {
+				response = await getWeatherByGeolocation(query, appid);
+			}
 
 			if (!response.ok) {
 				setLoading(false);

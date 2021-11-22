@@ -6,14 +6,23 @@ function PickLocation(props) {
 		event.preventDefault();
 		const location = locationInput.current.value;
 		if (location.length > 0) {
-			props.onSearch(location);
+			props.onSearch({
+				method: 'city',
+				city: location,
+				lat: null,
+				lon: null
+			});
 		}
 	};
 
 	const getCurrentPosition = () => {
 		const success = (position) => {
-			
-			console.log(position)
+			props.onSearch({
+				method: 'geo',
+				city: '',
+				lat: position.coords.latitude,
+				lon: position.coords.longitude
+			});
 		};
 		navigator.geolocation.getCurrentPosition(success)
 	} 

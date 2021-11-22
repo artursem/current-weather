@@ -3,7 +3,7 @@ import DisplayWeather from "./DisplayWeather";
 import PickLocation from "./PickLocation";
 
 function ShowWeather() {
-	const [location, setLocation] = useState("");
+	const [location, setLocation] = useState({});
 	const handleSearch = (location) => {
 		setLocation(location);
 	};
@@ -11,7 +11,7 @@ function ShowWeather() {
 	return (
 		<div>
 			<PickLocation onSearch={handleSearch} />
-			{location.length>0 && <DisplayWeather get={location} />}
+			{location && <DisplayWeather get={location} />}
 		</div>
 	);
 }
