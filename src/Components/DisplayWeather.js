@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-
+import classes from "./DisplayWeather.module.css";
 
 function DisplayWeather(props) {
 	const [display, setDisplay] = useState({});
@@ -60,7 +60,7 @@ function DisplayWeather(props) {
 	}
 	if (!loading && !error) {
 		show = (
-			<section>
+			<section className={classes.section}>
 				<h1>{display.city}</h1>
 				<div>{display.weather}</div>
 				<div>{display.temp}</div>

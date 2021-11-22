@@ -1,0 +1,46 @@
+.form {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: stretch;
+}
+
+.form > * {
+	margin: 2px;
+}
+
+.input {
+	width: 100%;
+
+	border: solid 1px #6a98dd;
+	border-radius: 3px;
+
+	padding-left: 10px;
+	font-family: inherit;
+    font-weight: bold;
+	color: #2a4a7a;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 3px;
+
+	fill: #fff;
+	background-color: #6a98dd;
+	border: solid 1px #5a92d6;
+    
+	cursor: pointer;
+}
+
+.button:hover, .button:active {
+    fill: #6a98dd;
+    background-color: #fefefe;
+}
+
+.button svg {
+	height: 33px;
+	weight: 33px;
+}

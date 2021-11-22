@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import IconArrow from "./UI/IconArrow";
 import IconSearch from "./UI/IconSearch";
+import classes from "./PickLocation.module.css";
 
 function PickLocation(props) {
 	const locationInput = useRef("");
@@ -30,12 +31,21 @@ function PickLocation(props) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<input type="search" ref={locationInput} placeholder="Search"></input>
-			<button type="submit">
+		<form onSubmit={handleSubmit} className={classes.form}>
+			<input
+				type="search"
+				ref={locationInput}
+				placeholder="Search"
+				className={classes.input}
+			></input>
+			<button type="submit" className={classes.button}>
 				<IconSearch />
 			</button>
-			<button type="button" onClick={getCurrentPosition}>
+			<button
+				type="button"
+				onClick={getCurrentPosition}
+				className={classes.button}
+			>
 				<IconArrow />
 			</button>
 		</form>
