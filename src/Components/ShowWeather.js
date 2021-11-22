@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState } from "react";
 import DisplayWeather from "./DisplayWeather";
 import PickLocation from "./PickLocation";
 

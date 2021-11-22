@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 function DisplayWeather(props) {
 	const [display, setDisplay] = useState({});
-	const [loading, setLoading] = useState(null);
-	const [error, setError] = useState(null);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 
-	const fetchWeather = async (query) => {
-		setError(null)
+	const fetchWeather = useCallback(async (query) => {
+		setError(false)
 		setLoading(true);
 		const appid = "599f9ab00f5ffd6eeb1a6bf54606a714";
 		try {
@@ -16,7 +16,7 @@ function DisplayWeather(props) {
 
 			if (!response.ok) {
 				setLoading(false);
-				setError(error.message);
+				setError(true);
 				throw new Error("No valid response");
 			}
 			const data = await response.json();
@@ -32,9 +32,9 @@ function DisplayWeather(props) {
 		} catch (error) {
 			console.log(error);
 		}
-	};
+	}, []);
 
-	useEffect(() => fetchWeather(props.get), [props.get]);
+	useEffect(() => fetchWeather(props.get), [fetchWeather, props.get]);
 
 	let show;
 
