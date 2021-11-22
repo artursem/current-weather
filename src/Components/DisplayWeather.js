@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 
+
 function DisplayWeather(props) {
 	const [display, setDisplay] = useState({});
 	const [loading, setLoading] = useState(false);
@@ -14,18 +15,19 @@ function DisplayWeather(props) {
 	const getWeatherByGeolocation = async (query, appid) => {
 		return fetch(
 			`http://api.openweathermap.org/data/2.5/weather?lat=${query.lat}&lon=${query.lon}&appid=${appid}`
-		)
+		);
 	};
 
-	const fetchWeather = useCallback(async (query, method) => {
-		setError(false)
-		setLoading(true);
+	const fetchWeather = useCallback(async (query) => {
+		setError(false);
 		const appid = "599f9ab00f5ffd6eeb1a6bf54606a714";
 		try {
 			let response;
-			if (query.method === 'city') {
+			if (query.method === "city") {
+				setLoading(true);
 				response = await getWeatherByCity(query, appid);
-			} else if (query.method === 'geo') {
+			} else if (query.method === "geo") {
+				setLoading(true);
 				response = await getWeatherByGeolocation(query, appid);
 			}
 
@@ -69,7 +71,7 @@ function DisplayWeather(props) {
 		);
 	}
 	if (error) {
-		show = <p>Something went wrong...</p>
+		show = <p>Something went wrong...</p>;
 	}
 
 	return show;

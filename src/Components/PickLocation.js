@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import IconArrow from "./UI/IconArrow";
+import IconSearch from "./UI/IconSearch";
 
 function PickLocation(props) {
 	const locationInput = useRef("");
@@ -7,10 +9,10 @@ function PickLocation(props) {
 		const location = locationInput.current.value;
 		if (location.length > 0) {
 			props.onSearch({
-				method: 'city',
+				method: "city",
 				city: location,
 				lat: null,
-				lon: null
+				lon: null,
 			});
 		}
 	};
@@ -18,20 +20,24 @@ function PickLocation(props) {
 	const getCurrentPosition = () => {
 		const success = (position) => {
 			props.onSearch({
-				method: 'geo',
-				city: '',
+				method: "geo",
+				city: "",
 				lat: position.coords.latitude,
-				lon: position.coords.longitude
+				lon: position.coords.longitude,
 			});
 		};
-		navigator.geolocation.getCurrentPosition(success)
-	} 
+		navigator.geolocation.getCurrentPosition(success);
+	};
 
 	return (
 		<form onSubmit={handleSubmit}>
 			<input type="search" ref={locationInput} placeholder="Search"></input>
-			<button type="submit">ok</button>
-			<button type="button" onClick={getCurrentPosition} >local</button>
+			<button type="submit">
+				<IconSearch />
+			</button>
+			<button type="button" onClick={getCurrentPosition}>
+				<IconArrow />
+			</button>
 		</form>
 	);
 }
