@@ -3,7 +3,7 @@ import useRequest from "../hooks/useRequest";
 import classes from "./DisplayWeather.module.css";
 
 function DisplayWeather(props) {
-	const { display, loading, error, fetchWeather } = useRequest(props.get);
+	const { display, loading, error, fetchWeather } = useRequest();
 
 	useEffect(() => {
 		fetchWeather(props.get);

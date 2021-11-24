@@ -28,7 +28,6 @@ const useRequest = () => {
 				throw new Error("No valid response");
 			}
 			const data = await response.json();
-
 			setLoading(false);
 			setDisplay({
 				city: data.name,
@@ -37,7 +36,7 @@ const useRequest = () => {
 				icon: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
 			});
 		} catch (error) {
-			console.log(error);
+			// setError(true)
 		}
 	}, []);
 	return { display, loading, error, fetchWeather };
